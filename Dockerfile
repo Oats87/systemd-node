@@ -32,6 +32,16 @@ COPY noop.service noop.target /etc/systemd/system/
 COPY 10_datasource.cfg /etc/cloud/cloud.cfg.d/
 COPY default_userdata /var/lib/cloud/seed/nocloud/user-data
 COPY env /etc/bash.bashrc.local
+COPY 10-delegate.conf /etc/systemd/system/rke2-server.service.d
+COPY 10-delegate.conf /etc/systemd/system/rke2-agent.service.d
+COPY 10-delegate.conf /etc/systemd/system/k3s.service.d
+COPY 10-delegate.conf /etc/systemd/system/k3s-agent.service.d
+COPY default-env /etc/default/rke2-server
+COPY default-env /etc/default/rke2-agent
+COPY default-env /etc/default/k3s
+COPY default-env /etc/default/k3s-agent
+COPY default-env /etc/default/rancher-system-agent
+
 RUN touch /var/lib/cloud/seed/nocloud/meta-data /etc/fstab
 
 VOLUME /var/lib/kubelet
